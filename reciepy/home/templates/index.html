@@ -42,4 +42,30 @@
     </button>
   </form>
 </div>
+
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">S No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Images</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for rec in receipes %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{rec.receipy_name}}</td>
+        <td>{{rec.receipy_des}}</td>
+        <td>
+          <img src="/media/{{rec.receipy_img}}" />
+        </td>
+      </tr>
+      {% endfor %}
+      <tr></tr>
+    </tbody>
+  </table>
+</div>
 {% endblock %}

@@ -12,6 +12,8 @@ def home(request):
             receipy_name=receipy_name,
             receipy_des=receipy_des
         )
-
+       
         return redirect("/home/")
-    return render(request,"index.html")
+    querySet=Reciepy.objects.all()
+    context={"receipes":querySet}
+    return render(request,"index.html",context)
