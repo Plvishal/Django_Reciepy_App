@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block start %}
+<div class="mt-10 p-10">
+  <div class="flex justify-end gap-4 items-center mb-3">
+    <a href="/delete-receipe/{{receipes.id}}" class="btn btn-danger">Delete</a>
+    <a href="/update-receipe/{{receipes.id}}" class="btn btn-success">Update</a>
+  </div>
+  <div class="border rounded-lg p-2 md:p-3">
+    <h1 class="font-bold text-[2rem] font-serif">{{receipes.receipy_name}}</h1>
+    <div class="flex justify-center items-center">
+      <img
+        src="/media/{{receipes.receipy_img}}"
+        alt="error"
+        class="w-full md:w-[40%] h-[300px] md:h-[300px] object-cover rounded-xl shadow-md"
+      />
+    </div>
+    <p class="mt-2 font-semibold text-md font-serif text-gray-500 text-justify">
+      {{receipes.receipy_des}}
+    </p>
+  </div>
+</div>
+{% endblock %}

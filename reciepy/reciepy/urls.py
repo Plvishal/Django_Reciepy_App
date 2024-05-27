@@ -21,10 +21,12 @@ from django.conf import settings
 from home.views import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("home/",home,name='home'),
+    path("", home),
+    path("add_receipe/",add_receipe,name='add_receipe'),
+    path("detail_by/<id>/",detail_by,name='detail_by'),
     path("delete-receipe/<id>/",delete_receipe,name='delete-receipe'),
     path("update-receipe/<id>/",update_receipe,name='update_receipe'),
+    path('admin/', admin.site.urls),
 ]
 
 if settings.DEBUG:

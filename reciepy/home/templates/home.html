@@ -1,0 +1,26 @@
+{% extends "base.html"%} {% block start %}
+<div class="w-full p-3 flex justify-center items-cente flex-wrap gap-4">
+  {% for rec in receipes %}
+  <div
+    class="border p-3 w-[350px] md:w-[450px] h-[550px] flex flex-col justify-between rounded-lg shadow-md hover:scale-95 transition-all cursor-pointer"
+  >
+    <div class="w-full">
+      <img
+        src="/media/{{rec.receipy_img}}"
+        class="object-cover rounded h-[280px] w-full"
+      />
+    </div>
+    <div class="mt-2">
+      <p class="font-bold font-serif text-lg">{{rec.receipy_name}}</p>
+      <p class="font-semibold text-md font-serif text-gray-500 text-justify">
+        {{rec.receipy_des| truncatewords:40}}
+      </p>
+    </div>
+    <div class="flex justify-end items-cente">
+      <a href="/detail_by/{{rec.id}}" class="btn btn-success">Details -> </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
+<!-- <a href="/delete-receipe/{{rec.id}}" class="btn btn-danger">Delete</a> -->
