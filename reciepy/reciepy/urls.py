@@ -22,7 +22,8 @@ from home.views import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("home/",home)
+    path("home/",home,name='home'),
+    path("delete-receipe/<id>/",delete_receipe,name='delete-receipe'),
 ]
 
 if settings.DEBUG:

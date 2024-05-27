@@ -1,71 +1,82 @@
 {% extends "base.html"%} {% block start %}
-<div class="container mt-5">
-  <form
-    class="col-6 mx-auto border p-2 rounded shadow-lg card"
-    method="post"
-    enctype="multipart/form-data"
-  >
-    {% csrf_token %}
-    <div class="mb-3">
-      <label for="receipy_name" class="form-label">Reciepy Name</label>
-      <input
-        type="text"
-        class="form-control"
-        id="receipy_name"
-        name="receipy_name"
-        required
-      />
-    </div>
-    <div class="mb-3">
-      <label for="receipy_des" class="form-label">Description</label>
-      <textarea
-        type="text"
-        class="form-control"
-        id="receipy_des"
-        name="receipy_des"
-        required
-      ></textarea>
-    </div>
-    <div class="mb-3">
-      <label for="receipy_img" class="form-label">Reciepy Image</label>
-      <input
-        type="file"
-        class="form-control"
-        id="receipy_img"
-        name="receipy_img"
-        required
-      />
-    </div>
+<div class="pb-4">
+  <div class="container mt-5">
+    <form
+      class="col-6 mx-auto border p-2 rounded shadow-lg card"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="receipy_name" class="form-label">Reciepy Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="receipy_name"
+          name="receipy_name"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="receipy_des" class="form-label">Description</label>
+        <textarea
+          type="text"
+          class="form-control"
+          id="receipy_des"
+          name="receipy_des"
+          required
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="receipy_img" class="form-label">Reciepy Image</label>
+        <input
+          type="file"
+          class="form-control"
+          id="receipy_img"
+          name="receipy_img"
+          required
+        />
+      </div>
 
-    <button type="submit" class="btn btn-primary btn-success">
-      Add Receipy
-    </button>
-  </form>
-</div>
+      <button type="submit" class="btn btn-primary btn-success">
+        Add Receipy
+      </button>
+    </form>
+  </div>
 
-<div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">S No</th>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Images</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for rec in receipes %}
-      <tr>
-        <th scope="row">{{forloop.counter}}</th>
-        <td>{{rec.receipy_name}}</td>
-        <td>{{rec.receipy_des}}</td>
-        <td>
-          <img src="/media/{{rec.receipy_img}}" />
-        </td>
-      </tr>
-      {% endfor %}
-      <tr></tr>
-    </tbody>
-  </table>
+  <div class="w-75 mx-auto border rounded p-2 mt-5 shadow-lg">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">S No</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Images</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="">
+        {% for rec in receipes %}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td>{{rec.receipy_name}}</td>
+          <td class="text-justify">{{rec.receipy_des}}</td>
+          <td class="w-75 d-flex justify-center items-center">
+            <img
+              src="/media/{{rec.receipy_img}}"
+              class="w-100 h-100 rounded shadow-lg"
+            />
+          </td>
+          <td>
+            <a href="/delete-receipe/{{rec.id}}" class="btn btn-danger"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+        <tr></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 {% endblock %}

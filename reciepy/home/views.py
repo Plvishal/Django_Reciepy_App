@@ -17,3 +17,8 @@ def home(request):
     querySet=Reciepy.objects.all()
     context={"receipes":querySet}
     return render(request,"index.html",context)
+def delete_receipe(request,id):
+    queryset=Reciepy.objects.get(id=id)
+    queryset.delete()
+    return redirect("/home/")
+
