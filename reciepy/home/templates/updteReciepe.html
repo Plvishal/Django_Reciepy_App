@@ -1,0 +1,48 @@
+{% extends "base.html"%} {% block start %}
+
+<div class="container mt-5">
+  <form
+    class="col-6 mx-auto border p-2 rounded shadow-lg card"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="receipy_name" class="form-label">Reciepy Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="receipy_name"
+        value="{{receipes.receipy_name}}"
+        name="receipy_name"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="receipy_des" class="form-label">Description</label>
+      <textarea
+        type="text"
+        class="form-control"
+        id="receipy_des"
+        name="receipy_des"
+        required
+      >
+   {{receipes.receipy_des}}</textarea
+      >
+    </div>
+    <div class="mb-3">
+      <label for="receipy_img" class="form-label">Reciepy Image</label>
+      <input
+        type="file"
+        class="form-control"
+        id="receipy_img"
+        name="receipy_img"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-success">
+      Update Receipy
+    </button>
+  </form>
+</div>
+{% endblock %}

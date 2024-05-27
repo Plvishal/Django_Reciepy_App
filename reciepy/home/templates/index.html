@@ -55,21 +55,24 @@
           <th scope="col">Actions</th>
         </tr>
       </thead>
-      <tbody class="">
+      <tbody class="w-auto">
         {% for rec in receipes %}
         <tr>
           <th scope="row">{{forloop.counter}}</th>
           <td>{{rec.receipy_name}}</td>
-          <td class="text-justify">{{rec.receipy_des}}</td>
-          <td class="w-75 d-flex justify-center items-center">
+          <td class="text-justify w-50">{{rec.receipy_des}}</td>
+          <td class="w-100 d-flex justify-content-center align-items-center">
             <img
               src="/media/{{rec.receipy_img}}"
               class="w-100 h-100 rounded shadow-lg"
             />
           </td>
-          <td>
+          <td class="w-25">
             <a href="/delete-receipe/{{rec.id}}" class="btn btn-danger"
               >Delete</a
+            >
+            <a href="/update-receipe/{{rec.id}}" class="btn btn-success"
+              >Update</a
             >
           </td>
         </tr>
