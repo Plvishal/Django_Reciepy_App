@@ -62,4 +62,10 @@ def delete_receipe(request,id):
     queryset=Reciepy.objects.get(id=id)
     queryset.delete()
     return redirect("/")
+# Login
+def login(request):
+    return render(request,"login.html")
+
+def register(request):
+    return render(request,"register.html")
 
