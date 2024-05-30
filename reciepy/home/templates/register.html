@@ -4,16 +4,25 @@
   method="post"
   enctype="multipart/form-data"
 >
+  {% csrf_token %}
   <h2 class="border-b-2 mb-3 p-1 text-xl font-bold font-serif text-center">
     Register
   </h2>
+  <div class="mb-3">
+    {% if messages %}
+    <div class="alert alert-primary" role="alert">
+      {% for message in messages %} {{message}} {% endfor %}
+    </div>
+
+    {% endif %}
+  </div>
   <div class="mb-3">
     <label class="form-check-label" for="username">Username</label>
     <input type="text" class="form-control" id="username" name="username" />
   </div>
   <div class="mb-3">
-    <label for="emailid" class="form-label">Email ID</label>
-    <input type="email" class="form-control" id="emailid" name="password" />
+    <label for="email" class="form-label">Email ID</label>
+    <input type="email" class="form-control" id="email" name="email" />
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
