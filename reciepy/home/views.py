@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate,login
+from django.contrib.auth.models import User
 from .models import *
 # Create your views here.
 def add_receipe(request):
@@ -65,22 +66,41 @@ def delete_receipe(request,id):
     queryset.delete()
     return redirect("/")
 # Login
-def login(request):
+def login_page(request):
+    if request.method=="POST":
+        username=request.POST.get("username")
+        password=request.POST.get("password")
+        
+        # checking 
+        if not User.objects.filter(username=username).exists():
+            messages.warning(request,"Email id does't exists please register first")
+            return redirect("/register")
+        
+        user_obj = authenticate(username=username, password=password)
+
+        print(user_obj)
+        if user_obj is None:
+            messages.warning(request,"Invalid password")
+            return redirect("/login")
+        else:
+            login(request,user_obj)
+            return redirect("/")
     return render(request,"login.html")
 
 def register(request):
     if request.method=="POST":
+        first_name=request.POST.get("first_name")
         username=request.POST.get("username")
-        email=request.POST.get("email")
         password=request.POST.get("password")
 
-        user=User.objects.filter(email=email)
+        user=User.objects.filter(username=username)
         if user.exists():
             messages.info(request, "Email Id already exits")
             return redirect("/register")
         user=User.objects.create(
+            first_name=first_name,
             username=username,
-            email=email
+            
         )
         user.set_password(password)
         user.save()
